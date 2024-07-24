@@ -1,3 +1,5 @@
+// import iziToast from 'izitoast';
+import * as iziToast from 'izitoast';
 import { fetchImages } from './pixabay-api';
 
 const form = document.querySelector('.search-form');
@@ -11,7 +13,13 @@ form.addEventListener('submit', evt => {
 });
 
 export function renderImages(images) {
-  console.log(images);
+  if (images.length === 0) {
+    console.log('dziala');
+    iziToast.show({
+      message:
+        'Sorry, there are no images matching your search query. Please try again!',
+    });
+  }
   const markup = images
     .map(image => {
       return `
